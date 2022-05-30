@@ -198,11 +198,20 @@
         list-style: none;
         margin: 5px 0;
       }
+
+      .user .tries {
+        display: inline-block;
+      }
+
+
     </style>
   </head>
   <body>
     <div class="wrapper">
       <div class="user" id="user">
+        <h3>Round: <span id="round">1</span></h3>
+        <h3>Tries: <span class="tries" id="tries">🪝</span></h3>
+        <hr />
         <h4>Total cash: $<span id="cash">0.00</span></h4>
 
         <p>Fish:</p>
