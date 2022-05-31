@@ -28,9 +28,11 @@ class GameField {
       this.#rodElement.style.transform = `rotateZ(${this.#rodAngle}deg)`
     })
 
+    let isPowerButtonDown = false
     const POWER_STATES = ['INCREASE', 'DECREASE']
     let progressInterval
     this.#rodPowerButton.addEventListener('mousedown', () => {
+      isPowerButtonDown = true;
       let state = POWER_STATES[0]
       this.#rodPower = 0
       progressInterval = setInterval(() => {
@@ -41,9 +43,12 @@ class GameField {
         this.#rodPowerElement.style.width = `${this.#rodPower * 100}%`
       }, 10)
     })
-    this.#rodPowerButton.addEventListener('mouseup', () => {
-      clearInterval(progressInterval)
-      this.#rodThrow(onRodThrow)
+    window.addEventListener('mouseup', () => {
+      if (isPowerButtonDown) {
+        clearInterval(progressInterval)
+        this.#rodThrow(onRodThrow)
+      }
+      isPowerButtonDown = false
     })
 
     window.addEventListener('resize', () => this.#resetDimensions())
